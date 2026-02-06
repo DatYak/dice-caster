@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://qiyhtg26xfbt"]
+
+[ext_resource type="PackedScene" uid="uid://bnbscim5mwyvw" path="res://Scenes/DieEditor.tscn" id="1_r150o"]
+
+[node name="Main" type="Node2D" unique_id=575266783]
+
+[node name="DieEditor" parent="." unique_id=444657851 instance=ExtResource("1_r150o")]
+position = Vector2(570, 441)
+
+[node name="Enemy" type="Node2D" parent="." unique_id=2137228921]
+
+[node name="Inventory" type="Node2D" parent="." unique_id=652423892]

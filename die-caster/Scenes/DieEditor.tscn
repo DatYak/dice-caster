@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bnbscim5mwyvw"]
+
+[ext_resource type="Texture2D" uid="uid://b78ewq4jt7p2a" path="res://Sprites/D6/D6_Sheet.png" id="1_p8l45"]
+[ext_resource type="Script" uid="uid://cha25h52ixdy4" path="res://Scripts/die_editor.gd" id="1_xu20e"]
+[ext_resource type="PackedScene" uid="uid://buy22nl4i1uvd" path="res://Scenes/DieFace.tscn" id="3_scrru"]
+
+[node name="DieEditor" type="Node2D" unique_id=444657851 node_paths=PackedStringArray("face_parent")]
+script = ExtResource("1_xu20e")
+face_sprite_width = 64
+face_sprite_gap = 4
+face_parent = NodePath("Faces")
+die_face_packed = ExtResource("3_scrru")
+
+[node name="Image" type="Sprite2D" parent="." unique_id=2050916748]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_p8l45")
+hframes = 7
+
+[node name="Faces" type="Node2D" parent="." unique_id=526193978]
+position = Vector2(0, 70)

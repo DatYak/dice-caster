@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://buy22nl4i1uvd"]
+
+[ext_resource type="Script" uid="uid://d2hasamqjdrqv" path="res://Scripts/die_face.gd" id="1_yov45"]
+[ext_resource type="Texture2D" uid="uid://b78ewq4jt7p2a" path="res://Sprites/D6/D6_Sheet.png" id="2_6f67f"]
+
+[node name="Face" type="Node2D" unique_id=1591697436]
+script = ExtResource("1_yov45")
+
+[node name="Image" type="Sprite2D" parent="." unique_id=1608516083]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_6f67f")
+hframes = 7
+region_rect = Rect2(0, 0, 0, 32)

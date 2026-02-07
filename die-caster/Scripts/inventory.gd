@@ -52,8 +52,6 @@ func layoutSlots():
 func TEST_addRandomFaces():
 	for  i in range(TEST_random_face_count):
 		var rnd = randi_range(1, TEST_random_face_max)
-		var data = FaceData.new()
-		data.numerical_value = rnd
-		data.display_string = str(rnd)
+		var data = FaceData.new(rnd, str(rnd), FaceData.Quirk.None)
 		extra_faces.append(data)
 		pass

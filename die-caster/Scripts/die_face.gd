@@ -5,7 +5,7 @@ extends Node2D
 var face_data : FaceData
 var current_slot : FaceSlot
 
-func setFaceData(roll_result):
+func setFaceData(roll_result:FaceData):
 	face_data = roll_result
 	$Label.text = face_data.display_string
 

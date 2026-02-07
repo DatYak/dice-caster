@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://5bkv1wg08f0d"
-path="res://.godot/imported/ka1.ttf-3bfa4ff0626c2102cbcd398ce2e4d1e2.fontdata"
+uid="uid://drh354gc30aj8"
+path="res://.godot/imported/Born2bSportyFS.otf-8b7e12120091d3518f23e7aed8f1d4d9.fontdata"
 
 [deps]
 
-source_file="res://ka1.ttf"
-dest_files=["res://.godot/imported/ka1.ttf-3bfa4ff0626c2102cbcd398ce2e4d1e2.fontdata"]
+source_file="res://Born2bSportyFS.otf"
+dest_files=["res://.godot/imported/Born2bSportyFS.otf-8b7e12120091d3518f23e7aed8f1d4d9.fontdata"]
 
 [params]
 

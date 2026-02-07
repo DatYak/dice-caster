@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b5j88s4gdntdv" path="res://Scenes/Enemies/SimpleRange.tscn" id="4_vy5pj"]
 [ext_resource type="Script" uid="uid://bsp725ey8svoy" path="res://Scripts/face_drag_manager.gd" id="6_v1gob"]
 [ext_resource type="Resource" uid="uid://bqb66d8qthqyc" path="res://Data/AddTwo.tres" id="8_grg3l"]
-[ext_resource type="Resource" uid="uid://d2sh5eoagqnnl" path="res://Data/MinusThree.tres" id="9_frkhe"]
 [ext_resource type="Script" uid="uid://557utcle8x1j" path="res://Scripts/player.gd" id="11_4kpch"]
 
 [node name="Main" type="Node2D" unique_id=575266783]
@@ -44,8 +43,9 @@ show_percentage = false
 position = Vector2(940, 446)
 script = ExtResource("2_idj7w")
 TEST_add_random_faces = true
+TEST_random_face_count = 4
 TEST_random_face_max = 6
-extra_faces = [ExtResource("3_kln2b"), ExtResource("8_grg3l"), ExtResource("9_frkhe")]
+extra_faces = [ExtResource("3_kln2b"), ExtResource("8_grg3l")]
 slot_packed = ExtResource("4_v1gob")
 die_face_packed = ExtResource("4_rgh2o")
 

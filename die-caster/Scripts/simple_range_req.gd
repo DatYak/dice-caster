@@ -21,5 +21,4 @@ func _ready() -> void:
 	print("Range is " + str(lower) + " - " + str(upper))
 
 func _check_value(value:int) -> bool:
-	print (value)
 	return lower <= value and value <= upper

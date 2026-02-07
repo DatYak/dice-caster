@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://dk2v1g18fch2c" path="res://Scenes/FaceSlot.tscn" id="2_wyy6q"]
 [ext_resource type="PackedScene" uid="uid://buy22nl4i1uvd" path="res://Scenes/DieFace.tscn" id="3_scrru"]
 [ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="4_p5qbf"]
-[ext_resource type="FontFile" uid="uid://5bkv1wg08f0d" path="res://ka1.ttf" id="5_gdbo1"]
+[ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="5_p5qbf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wu6st"]
-font = ExtResource("5_gdbo1")
-font_size = 25
+font = ExtResource("5_p5qbf")
+font_size = 45
 font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
 outline_color = Color(0, 0, 0, 1)
 

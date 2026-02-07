@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d2hasamqjdrqv" path="res://Scripts/die_face.gd" id="1_yov45"]
 [ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="2_yov45"]
-[ext_resource type="FontFile" uid="uid://5bkv1wg08f0d" path="res://ka1.ttf" id="3_6f67f"]
+[ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="3_6f67f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yov45"]
 font = ExtResource("3_6f67f")
-font_size = 25
+font_size = 45
 font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
 outline_color = Color(0, 0, 0, 1)
 

@@ -6,48 +6,49 @@ extends Node2D
 @export var face_sprite_width = 32
 @export var face_sprite_gap = 3
 
+@export var slot_radius = 100
+
 @export var face_parent : Node2D
+@export var dice_slot_packed: PackedScene
 @export var die_face_packed : PackedScene
 
-@export var face_options : Array
-
-var die_faces : Array
+var face_slots : Array
 var image : Sprite2D
 
 func _ready() -> void:
 	image = get_node("Image")
-	setDefaultFaces()
+	setupSlots()
 
 func  _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_SPACE:
 			rollDie()
 
-func setDefaultFaces():
-	var pos_X = (face_sprite_width + face_sprite_gap) * faces
-	pos_X = pos_X - face_sprite_width
-	pos_X = pos_X /  -2.0
+func setupSlots():
+	var angle_increment = deg_to_rad(360 / faces)
+	var angle = 0
 	for i in range(faces):
-		var face = die_face_packed.instantiate()
-		face_parent.add_child(face)
+		var slot = dice_slot_packed.instantiate()
+		face_parent.add_child(slot)
+		var slot_pos = Vector2(sin(angle) * slot_radius, cos(angle) * slot_radius)
+		slot.position = slot_pos
+		angle += angle_increment
+		face_slots.append(slot)
+		addDefaultFace(slot, i)
 
-		var face_data = DieFace.RollData.new()
+func addDefaultFace(slot, i):
+		var face = die_face_packed.instantiate()
+		var face_data = FaceData.new()
 		face_data.numerical_value = i + 1
 		# For faces without an ability the frame = their result (0 = ?)
 		face_data.sprite_frame = i + 1
-		face_data.effect = DieFace.SpecialEffect.None
+		face.setFaceData(face_data)
+		slot.setFaceInSlot(face)
 
-		face.setState(face_data)
-
-		face.position.x = pos_X
-		pos_X += face_sprite_width+face_sprite_gap
-
-		die_faces.append(face)
-
-		pass
 
 func rollDie():
-	var result = die_faces.pick_random()
-	print(result.roll_data.numerical_value)
-	image.frame = result.roll_data.sprite_frame
-	return result.roll_data
+	var slot = face_slots.pick_random()
+	var result = slot.getFaceData()
+	print(result.numerical_value)
+	image.frame = result.sprite_frame
+	return result

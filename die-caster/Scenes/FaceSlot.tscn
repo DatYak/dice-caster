@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dk2v1g18fch2c"]
+
+[ext_resource type="Texture2D" uid="uid://bf5clywcivj88" path="res://Sprites/D6/D6_Slot.png" id="1_2p0ro"]
+[ext_resource type="Script" uid="uid://7puipq3uoqr2" path="res://Scripts/face_slot.gd" id="1_t8p0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p0ro"]
+size = Vector2(64, 64)
+
+[node name="Face Slot" type="Node2D" unique_id=1885180457]
+script = ExtResource("1_t8p0p")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1044146718]
+texture_filter = 1
+texture = ExtResource("1_2p0ro")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1153294800]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1444883620]
+shape = SubResource("RectangleShape2D_2p0ro")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_start_hover"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_exit_hover"]

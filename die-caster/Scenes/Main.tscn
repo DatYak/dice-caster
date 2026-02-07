@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://qiyhtg26xfbt"]
 
 [ext_resource type="PackedScene" uid="uid://bnbscim5mwyvw" path="res://Scenes/DieEditor.tscn" id="1_r150o"]
+[ext_resource type="Script" uid="uid://dbp0ywqjphilp" path="res://Scripts/inventory.gd" id="2_idj7w"]
+[ext_resource type="Resource" uid="uid://djj2fli4mut1n" path="res://Data/Roll0.tres" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://buy22nl4i1uvd" path="res://Scenes/DieFace.tscn" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://dk2v1g18fch2c" path="res://Scenes/FaceSlot.tscn" id="4_v1gob"]
+[ext_resource type="Script" uid="uid://bsp725ey8svoy" path="res://Scripts/face_drag_manager.gd" id="6_v1gob"]
 
 [node name="Main" type="Node2D" unique_id=575266783]
 
@@ -10,3 +15,14 @@ position = Vector2(570, 441)
 [node name="Enemy" type="Node2D" parent="." unique_id=2137228921]
 
 [node name="Inventory" type="Node2D" parent="." unique_id=652423892]
+position = Vector2(940, 446)
+script = ExtResource("2_idj7w")
+TEST_add_random_faces = true
+TEST_random_face_count = 3
+TEST_random_face_max = 6
+extra_faces = [ExtResource("3_kln2b")]
+slot_packed = ExtResource("4_v1gob")
+die_face_packed = ExtResource("4_rgh2o")
+
+[node name="FaceDragManager" type="Node2D" parent="." unique_id=2139615487]
+script = ExtResource("6_v1gob")

@@ -8,32 +8,40 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_wu6st"]
 font = ExtResource("5_p5qbf")
-font_size = 45
+font_size = 70
 font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
 outline_color = Color(0, 0, 0, 1)
 
-[node name="DieEditor" type="Node2D" unique_id=444657851 node_paths=PackedStringArray("face_parent")]
+[node name="DieEditor" type="Node2D" unique_id=444657851 node_paths=PackedStringArray("face_parent", "roll_duration_timer")]
 script = ExtResource("1_xu20e")
 face_sprite_width = 64
 face_sprite_gap = 4
 face_parent = NodePath("Faces")
 dice_slot_packed = ExtResource("2_wyy6q")
 die_face_packed = ExtResource("3_scrru")
-
-[node name="Faces" type="Node2D" parent="." unique_id=526193978]
+roll_duration_timer = NodePath("Timer")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=577493557]
 texture_filter = 1
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("4_p5qbf")
 region_rect = Rect2(0, 0, 0, 32)
 
+[node name="Faces" type="Node2D" parent="." unique_id=526193978]
+
 [node name="Label" type="Label" parent="." unique_id=1312346788]
 texture_filter = 1
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
 text = "?"
 label_settings = SubResource("LabelSettings_wu6st")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=738991410]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="on_roll_finish"]

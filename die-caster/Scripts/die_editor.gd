@@ -14,17 +14,30 @@ extends Node2D
 
 @export var base_damage = 10
 
+@export var roll_duration_timer: Timer
+@export var shake_speed = 0.05
+@export var shake_speed_variance = 0.005
+@export var max_shake_angle = 15.0
+@export var face_tick_speed = 0.2
+@export var face_tick_mult = 1.2
+
+var shake_tween:Tween
+var image_scale
+
 @export var max_rolls = 5
 var rolls_made = 0
 var current_result = 0
 var valid_slots: Array
 var hits_left: Dictionary
 
+var shaking = false
+
 var face_slots : Array
 var image : Sprite2D
 
 func _ready() -> void:
 	image = get_node("Image")
+	image_scale = image.scale
 	setupSlots()
 
 func  _input(event: InputEvent) -> void:
@@ -33,7 +46,7 @@ func  _input(event: InputEvent) -> void:
 			rollDie()
 
 func setupSlots():
-	var angle_increment = deg_to_rad(360 / faces)
+	var angle_increment = deg_to_rad(360.0 / faces)
 	var angle = 0
 	for i in range(faces):
 		var slot = dice_slot_packed.instantiate()
@@ -64,22 +77,55 @@ func rollDie():
 			hits_to_lock = max_rolls
 		hits_left.set(valid_slots[i], hits_to_lock)
 	
+	roll_duration_timer.start()
+	startShakingDie()
+
+func startShakingDie():
+	shaking = true
+	shakeDie()
+	var scale_tween = image.get_tree().create_tween()
+	scale_tween.tween_property(image, "scale", image_scale * face_tick_mult, face_tick_speed / 2)
+
+func shakeDie():
+	if not shaking:
+		return
+	var angle = randf_range(-max_shake_angle, max_shake_angle)
+	var duration = shake_speed + randf_range(-shake_speed_variance, shake_speed_variance)
 	
-	while rolls_made <= max_rolls:
-		rolls_made += 1
-		var roll_again = rollSingleDie()
-		print ("Rolling (Total: " + str(current_result) + ") ")
-		if (not roll_again):
-			break
+	shake_tween = image.get_tree().create_tween()
+	shake_tween.tween_property(image, "rotation_degrees", angle, duration)
+	shake_tween.tween_callback(shakeDie)
+
+func stopShakingDie():
+	shake_tween.kill()
+	var tween = image.get_tree().create_tween()
+	tween.tween_property(image, "rotation_degrees", 0,  face_tick_speed / 2)
+	tween.tween_property(image, "scale", image_scale, face_tick_speed / 2)
 	
-	SignalBus.on_roll_presented.emit(current_result, base_damage)
+	shaking = false
+
+func on_roll_finish():
+	rolls_made += 1
+	var roll_again = rollSingleDie()
+	print ("Rolling (Total: " + str(current_result) + ") ")
+	if roll_again && rolls_made < max_rolls:
+		roll_duration_timer.start()
+	else:
+		stopShakingDie()
+		SignalBus.on_roll_presented.emit(current_result, base_damage)
 
 func rollSingleDie() -> bool:
+	# What if every slot is locked?
+	if valid_slots.size() == 0:
+		return false
+	
 	var slot = valid_slots.pick_random() as FaceSlot
 	var result = slot.getFaceData()
 	processQuirk(result)
 	current_result += result.numerical_value
 	$Label.text = str(current_result)
+	
+	slot.startFacePulse(face_tick_speed,face_tick_mult)
 	
 	hits_left[slot] -= 1
 	if hits_left[slot] <= 0:
@@ -89,6 +135,6 @@ func rollSingleDie() -> bool:
 	return result.will_roll_again
 
 func processQuirk(data: FaceData ):
-	match FaceData.Quirk:
+	match data.Quirk:
 		FaceData.Quirk.None:
 			pass

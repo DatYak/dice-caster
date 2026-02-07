@@ -10,7 +10,7 @@ func _ready() -> void:
 	SignalBus.on_face_picked_up.connect(_on_face_picked_up)
 	SignalBus.on_slot_hovered.connect(_on_slot_hoverered)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var pos = get_viewport().get_mouse_position()
 	if not held_face == null:
 		held_face.global_position = pos

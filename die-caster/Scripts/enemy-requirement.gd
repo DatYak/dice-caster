@@ -9,7 +9,7 @@ var damage_value
 func _ready() -> void:
 	damage_value = randi_range(damage_min, damage_max)
 
-func _check_value(value) -> bool:
+func _check_value(_value) -> bool:
 	return true
 
 func getDamage() ->int:

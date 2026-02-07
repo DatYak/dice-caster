@@ -31,3 +31,16 @@ func _input(event: InputEvent) -> void:
 			if is_occupied:
 				SignalBus.on_face_picked_up.emit(occupying_face)
 		
+
+func startFacePulse(duration:float, size_mult:float):
+	var halftime = duration / 2.0
+	var size = occupying_face.scale
+	var big_size = size * size_mult
+	var pulse_tween = occupying_face.get_tree().create_tween()
+	pulse_tween.tween_property(occupying_face, "scale", big_size, halftime)
+	pulse_tween.tween_callback(endFacePulse.bind(halftime, size))
+	
+func endFacePulse(duration:float, size:Vector2):
+	var pulse_tween = occupying_face.get_tree().create_tween()
+	pulse_tween.tween_property(occupying_face, "scale", size, duration)
+	

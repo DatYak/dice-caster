@@ -18,6 +18,12 @@
 
 [node name="DieEditor" parent="." unique_id=444657851 instance=ExtResource("1_r150o")]
 position = Vector2(560, 450)
+faces = 6
+slot_radius = 100
+base_damage = 10
+face_tick_speed = 0.2
+face_tick_mult = 1.2
+max_rolls = 5
 
 [node name="Enemy" type="Node2D" parent="." unique_id=2137228921 node_paths=PackedStringArray("hp_bar")]
 position = Vector2(560, 100)

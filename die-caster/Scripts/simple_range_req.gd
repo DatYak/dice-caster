@@ -4,16 +4,16 @@ extends EnemyReq
 @export var lower_bound_display : Node2D
 @export var upper_bound_display : Node2D
 
-@export var min = 1
-@export var max = 6
+@export var min_value = 1
+@export var max_value = 6
 
 var lower:int
 var upper:int
 
 func _ready() -> void:
 	super()
-	lower = randi_range(min, max - 1)
-	upper = randi_range(lower + 1, max)
+	lower = randi_range(min_value, max_value - 1)
+	upper = randi_range(lower + 1, max_value)
 	
 	lower_bound_display.get_node("Label").text = str(lower)
 	upper_bound_display.get_node("Label").text = str(upper)

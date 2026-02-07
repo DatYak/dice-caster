@@ -108,7 +108,6 @@ func stopShakingDie():
 
 func on_roll_finish():
 	var roll_again = rollSingleDie()
-	print ("Rolling (Total: " + str(current_roll.presented_value) + ") ")
 	if roll_again && current_roll.faces_rolled.size() <= max_rolls:
 		roll_duration_timer.start()
 	else:

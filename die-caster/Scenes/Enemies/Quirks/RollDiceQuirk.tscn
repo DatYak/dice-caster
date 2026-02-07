@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cpoofa2imsf52"]
+
+[ext_resource type="Script" uid="uid://8gjii1v0vvdv" path="res://Scripts/roll_dice_quirk.gd" id="1_46idg"]
+[ext_resource type="Texture2D" uid="uid://qornjrifiwnv" path="res://Sprites/D6/D6_Blank_Bad.png" id="2_46idg"]
+[ext_resource type="Texture2D" uid="uid://c8fn5x3rr88u4" path="res://Sprites/TEMP/TEMP_circular-arrow.png" id="3_o7g4n"]
+[ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="4_iuvlr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srgox"]
+font = ExtResource("4_iuvlr")
+font_size = 32
+font_color = Color(0.84705883, 0.5019608, 0.21960784, 1)
+outline_size = 5
+outline_color = Color(0.6313726, 0.23921569, 0.23137255, 1)
+
+[node name="RollDiceReq" type="Node2D" unique_id=361524091 node_paths=PackedStringArray("display")]
+script = ExtResource("1_46idg")
+display = NodePath("Display/Label")
+damage_on_fail = 20
+
+[node name="Display" type="Node2D" parent="." unique_id=475989844]
+
+[node name="Image" type="Sprite2D" parent="Display" unique_id=1410353789]
+texture_filter = 1
+texture = ExtResource("2_46idg")
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Icon" type="Sprite2D" parent="Display" unique_id=1510055296]
+texture_filter = 1
+position = Vector2(25.999998, -23.999998)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("3_o7g4n")
+
+[node name="Label" type="Label" parent="Display" unique_id=925901857]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "<2x"
+label_settings = SubResource("LabelSettings_srgox")
+horizontal_alignment = 1
+vertical_alignment = 1

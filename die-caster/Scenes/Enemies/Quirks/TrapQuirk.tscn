@@ -13,19 +13,20 @@ outline_color = Color(0.6313726, 0.23921569, 0.23137255, 1)
 
 [node name="TrapQuirk" type="Node2D" unique_id=1312846471 node_paths=PackedStringArray("display_label")]
 script = ExtResource("1_r7gob")
+is_repeatable = null
 display_label = NodePath("Label")
+trap_damage = null
 
 [node name="Image" type="Sprite2D" parent="." unique_id=746224542]
 texture_filter = 1
-position = Vector2(0, 73)
 texture = ExtResource("2_voe4w")
 
 [node name="Label" type="Label" parent="." unique_id=130744267]
 texture_filter = 1
 offset_left = -32.0
-offset_top = 34.0
+offset_top = -38.0
 offset_right = 32.0
-offset_bottom = 105.0
+offset_bottom = 33.0
 text = "?"
 label_settings = SubResource("LabelSettings_aa7e6")
 horizontal_alignment = 1

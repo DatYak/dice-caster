@@ -9,6 +9,7 @@ var current_hp:int
 
 func _ready() -> void:
 	SignalBus.on_roll_failed.connect(on_suffer_damage)
+	SignalBus.on_player_damaged.connect(on_suffer_damage)
 	
 	current_hp = max_hp
 	

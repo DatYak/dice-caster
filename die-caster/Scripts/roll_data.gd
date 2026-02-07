@@ -17,4 +17,4 @@ func reset(base_damage:int) ->void:
 
 func addFaceToRoll(face:FaceData):
 	presented_value += face.numerical_value
-	faces_rolled 
+	faces_rolled.append(face)

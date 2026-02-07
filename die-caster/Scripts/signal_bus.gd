@@ -6,6 +6,9 @@ signal on_face_picked_up(face: DieFace)
 signal on_slot_hovered(slot: FaceSlot)
 
 @warning_ignore("unused_signal")
+signal on_player_damaged(damage:int)
+
+@warning_ignore("unused_signal")
 signal on_roll_presented(roll_data:RollData)
 @warning_ignore("unused_signal")
 signal on_roll_succeeded(damage:int)

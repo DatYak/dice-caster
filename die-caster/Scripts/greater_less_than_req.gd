@@ -13,8 +13,8 @@ func _ready() -> void:
 	super()
 	threshold = randi_range(min_value, max_value)
 	is_greater = randi_range(0,1) == 0
-	var sign = ">" if is_greater else "<"
-	display.text = sign + str(threshold)
+	var sign_symbol = ">" if is_greater else "<"
+	display.text = sign_symbol + str(threshold)
 
 func _get_random_value(will_succeed:bool, inf_cap:int = 5) -> int:
 	var rand = randi_range(1, inf_cap)

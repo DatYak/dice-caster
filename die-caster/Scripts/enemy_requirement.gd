@@ -16,7 +16,6 @@ func _ready() -> void:
 	_set_damage()
 
 func add_quirk(quirk:EnemyReqQuirk):
-	add_child(quirk)
 	quirk._setup(self)
 	req_quirks.append(quirk)
 
@@ -36,12 +35,13 @@ func _check_value(_value) -> bool:
 func _get_random_value(will_succeed:bool, inf_cap:int = 5) -> int:
 	return 0
 
+func on_roll_presented(data : RollData):
+	for  i in range(req_quirks.size()):
+		req_quirks[i]._on_roll_presented(data)
+
 # Gets the damage that will be done to a player on a failure
-#	Potential Quirks:
-#		- Dealing bonus damage when the player presents a number specified as a hazard
-#		- Modifying damage if the number of times the player's die rolled falls meets a condition
 func get_damage_value(roll_data: RollData) -> int:
 	var damage = base_damage
 	for  i in range(req_quirks.size()):
-		damage = req_quirks[i]._resolve_quirk(damage, roll_data)
+		damage = req_quirks[i]._modify_damage(damage, roll_data)
 	return damage

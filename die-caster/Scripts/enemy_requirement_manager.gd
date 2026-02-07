@@ -7,6 +7,10 @@ extends Node2D
 @export var turn_pip_empty: CompressedTexture2D
 @export var turn_pip_filled: CompressedTexture2D
 
+@export var req_quirk_parent: Node2D
+@export var req_quirk_spacing = 60
+var req_quirk_pos = 0.0
+
 var active_req:EnemyReq
 var turns_taken:int = 0
 
@@ -28,10 +32,16 @@ func nextRound():
 func spawnRequirement():
 	if not active_req == null:
 		active_req.queue_free()
+		for i in range(req_quirk_parent.get_child_count()):
+			req_quirk_parent.get_child(i).queue_free()
+		req_quirk_pos = 0.0
 	var req = enemy.pull_requirement()
 	add_child(req)
 	var req_quirk = enemy.pull_quirk()
 	if not req_quirk == null:
+		req_quirk_parent.add_child(req_quirk)
+		req_quirk.position = Vector2(0.0, req_quirk_pos)
+		req_quirk_pos += req_quirk_spacing
 		req.add_quirk(req_quirk)
 	active_req = req
 	turns_taken = 0
@@ -74,6 +84,7 @@ func updatePips():
 
 func on_result_presented(roll_data:RollData):
 	turns_taken += 1
+	active_req.on_roll_presented(roll_data)
 	if active_req._check_value(roll_data.presented_value):
 		SignalBus.on_roll_succeeded.emit(roll_data.presented_damage)
 		print("Success!")

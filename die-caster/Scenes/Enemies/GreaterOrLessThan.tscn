@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xj35pwjtw6ql"]
 
-[ext_resource type="Script" uid="uid://dkp87k0oxalo1" path="res://Scripts/greater-less-than-req.gd" id="1_3v2sg"]
+[ext_resource type="Script" uid="uid://dkp87k0oxalo1" path="res://Scripts/greater_less_than_req.gd" id="1_3v2sg"]
 [ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="2_lneth"]
 [ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="3_1ntei"]
 

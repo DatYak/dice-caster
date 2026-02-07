@@ -20,5 +20,15 @@ func _ready() -> void:
 	
 	print("Range is " + str(lower) + " - " + str(upper))
 
+func _get_random_value(will_succeed:bool, inf_cap:int = 2) -> int:
+	if will_succeed:
+		return randi_range(lower, upper)
+	else:
+		var rand = randi_range(0, inf_cap)
+		if randi_range(0,1) == 0:
+			return lower - inf_cap
+		else:
+			return upper + inf_cap
+
 func _check_value(value:int) -> bool:
 	return lower <= value and value <= upper

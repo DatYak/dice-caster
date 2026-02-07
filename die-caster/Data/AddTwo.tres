@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FaceData" format=3 uid="uid://bqb66d8qthqyc"]
 
-[ext_resource type="Script" uid="uid://c4bxx3r0o12rp" path="res://Scripts/face-data.gd" id="1_fsuhw"]
+[ext_resource type="Script" uid="uid://c4bxx3r0o12rp" path="res://Scripts/face_data.gd" id="1_fsuhw"]
 
 [resource]
 script = ExtResource("1_fsuhw")

@@ -1,8 +1,7 @@
 class_name EnemyRequirementSelector
 extends Node2D
 
-@export var requirement_pool:Array
-
+@export var enemy:Enemy
 @export var turn_pip_packed:PackedScene
 @export var turn_pip_parent:Node2D
 @export var turn_pip_empty: CompressedTexture2D
@@ -17,7 +16,7 @@ var turn_pip_tween_stagger = 0.05
 var turn_pip_spacing = -5
 
 func _ready() -> void:
-	if not requirement_pool.size() == 0:
+	if not enemy.requirement_pool.size() == 0:
 		nextRound()
 	challenge_delay.timeout.connect(nextRound)
 	SignalBus.on_roll_presented.connect(on_result_presented)
@@ -29,9 +28,11 @@ func nextRound():
 func spawnRequirement():
 	if not active_req == null:
 		active_req.queue_free()
-	var req_packed = requirement_pool.pick_random()
-	var req = req_packed.instantiate()
+	var req = enemy.pull_requirement()
 	add_child(req)
+	var req_quirk = enemy.pull_quirk()
+	if not req_quirk == null:
+		req.add_quirk(req_quirk)
 	active_req = req
 	turns_taken = 0
 	displayTurnPips()
@@ -77,13 +78,14 @@ func on_result_presented(roll_data:RollData):
 		SignalBus.on_roll_succeeded.emit(roll_data.presented_damage)
 		print("Success!")
 	else:
-		SignalBus.on_roll_failed.emit(active_req._get_damage_value(roll_data))
+		SignalBus.on_roll_failed.emit(active_req.get_damage_value(roll_data))
 		print("Failure!")
 	
 	if (turns_taken >= active_req.turns):
 		# Update so all pips are full during the delay
 		updatePips()
 		challenge_delay.start()
+		SignalBus.on_challenge_cleanup_started.emit()
 	else:
 		# Just increment the pips display
 		updatePips()

@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://dntladq8a8x86" path="res://Scripts/enemy.gd" id="2_bmxlf"]
 [ext_resource type="Script" uid="uid://dbp0ywqjphilp" path="res://Scripts/inventory.gd" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://b0hsj56og3gjy" path="res://icon.svg" id="2_jw32o"]
-[ext_resource type="Script" uid="uid://dxr4x38y1om53" path="res://Scripts/enemy-requirement-manager.gd" id="3_50glp"]
+[ext_resource type="Script" uid="uid://dxr4x38y1om53" path="res://Scripts/enemy_requirement-manager.gd" id="3_50glp"]
 [ext_resource type="Resource" uid="uid://djj2fli4mut1n" path="res://Data/Zero.tres" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://dxa0kqdyx4chx" path="res://Scenes/Enemies/Quirks/TrapQuirk.tscn" id="4_346fj"]
 [ext_resource type="PackedScene" uid="uid://buy22nl4i1uvd" path="res://Scenes/DieFace.tscn" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://dk2v1g18fch2c" path="res://Scenes/FaceSlot.tscn" id="4_v1gob"]
 [ext_resource type="PackedScene" uid="uid://b5j88s4gdntdv" path="res://Scenes/Enemies/SimpleRange.tscn" id="4_vy5pj"]
@@ -24,14 +25,17 @@
 position = Vector2(640, 100)
 script = ExtResource("2_bmxlf")
 hp_bar = NodePath("HPBar")
+requirement_pool = Array[PackedScene]([ExtResource("6_1p5hy"), ExtResource("4_vy5pj")])
+quirk_chance = 1.0
+quirk_pool = Array[PackedScene]([ExtResource("4_346fj")])
 
 [node name="Image" type="Sprite2D" parent="Enemy" unique_id=1290790298]
 texture = ExtResource("2_jw32o")
 
-[node name="Requirements" type="Node2D" parent="Enemy" unique_id=336741345 node_paths=PackedStringArray("turn_pip_parent", "challenge_delay")]
+[node name="Requirements" type="Node2D" parent="Enemy" unique_id=336741345 node_paths=PackedStringArray("enemy", "turn_pip_parent", "challenge_delay")]
 position = Vector2(0, 131)
 script = ExtResource("3_50glp")
-requirement_pool = [ExtResource("4_vy5pj"), ExtResource("6_1p5hy")]
+enemy = NodePath("..")
 turn_pip_packed = ExtResource("7_h1m7h")
 turn_pip_parent = NodePath("Turn Pips")
 turn_pip_empty = ExtResource("8_2w5on")

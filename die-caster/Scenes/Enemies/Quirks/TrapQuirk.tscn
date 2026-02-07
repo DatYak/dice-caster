@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dxa0kqdyx4chx"]
+
+[ext_resource type="Script" uid="uid://bir72p1esq6h3" path="res://Scripts/trap_values.gd" id="1_r7gob"]
+[ext_resource type="Texture2D" uid="uid://qornjrifiwnv" path="res://Sprites/D6/D6_Blank_Bad.png" id="2_voe4w"]
+[ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="3_voe4w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aa7e6"]
+font = ExtResource("3_voe4w")
+font_size = 45
+font_color = Color(0.84705883, 0.5019608, 0.21960784, 1)
+outline_size = 6
+outline_color = Color(0.6313726, 0.23921569, 0.23137255, 1)
+
+[node name="TrapQuirk" type="Node2D" unique_id=1312846471 node_paths=PackedStringArray("display_label")]
+script = ExtResource("1_r7gob")
+display_label = NodePath("Label")
+
+[node name="Image" type="Sprite2D" parent="." unique_id=746224542]
+texture_filter = 1
+position = Vector2(0, 73)
+texture = ExtResource("2_voe4w")
+
+[node name="Label" type="Label" parent="." unique_id=130744267]
+texture_filter = 1
+offset_left = -32.0
+offset_top = 34.0
+offset_right = 32.0
+offset_bottom = 105.0
+text = "?"
+label_settings = SubResource("LabelSettings_aa7e6")
+horizontal_alignment = 1
+vertical_alignment = 1

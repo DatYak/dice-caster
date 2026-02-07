@@ -16,6 +16,19 @@ func _ready() -> void:
 	var sign = ">" if is_greater else "<"
 	display.text = sign + str(threshold)
 
+func _get_random_value(will_succeed:bool, inf_cap:int = 5) -> int:
+	var rand = randi_range(1, inf_cap)
+	if will_succeed:
+		if is_greater:
+			return threshold + rand
+		else: 
+			return threshold - rand
+	else:
+		if is_greater:
+			return threshold - rand
+		else: 
+			return threshold + rand
+
 func _check_value(value:int) -> bool:
 	if is_greater:
 		return value > threshold

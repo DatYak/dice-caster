@@ -12,6 +12,8 @@ extends Node2D
 @export var dice_slot_packed: PackedScene
 @export var die_face_packed : PackedScene
 
+@export var base_damage = 10
+
 var face_slots : Array
 var image : Sprite2D
 
@@ -41,14 +43,13 @@ func addDefaultFace(slot, i):
 		var face_data = FaceData.new()
 		face_data.numerical_value = i + 1
 		# For faces without an ability the frame = their result (0 = ?)
-		face_data.sprite_frame = i + 1
+		face_data.display_string = str(face_data.numerical_value)
 		face.setFaceData(face_data)
 		slot.setFaceInSlot(face)
 
 
 func rollDie():
-	var slot = face_slots.pick_random()
+	var slot = face_slots.pick_random() as FaceSlot
 	var result = slot.getFaceData()
-	print(result.numerical_value)
-	image.frame = result.sprite_frame
-	return result
+	$Label.text = str(result.display_string)
+	SignalBus.on_roll_presented.emit(result.numerical_value, base_damage)

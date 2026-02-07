@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b5j88s4gdntdv"]
+
+[ext_resource type="Script" uid="uid://yw2ojmxav8tf" path="res://Scripts/simple_range_req.gd" id="1_e16ex"]
+[ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="2_tu477"]
+[ext_resource type="FontFile" uid="uid://5bkv1wg08f0d" path="res://ka1.ttf" id="3_n7i1n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srgox"]
+font = ExtResource("3_n7i1n")
+font_size = 25
+font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[node name="RangeRequirement" type="Node2D" unique_id=361524091 node_paths=PackedStringArray("lower_bound_display", "upper_bound_display")]
+script = ExtResource("1_e16ex")
+lower_bound_display = NodePath("Lower")
+upper_bound_display = NodePath("Upper")
+damage_min = 5
+damage_max = 5
+
+[node name="Lower" type="Node2D" parent="." unique_id=475989844]
+position = Vector2(-102, 0)
+
+[node name="Image" type="Sprite2D" parent="Lower" unique_id=1410353789]
+texture_filter = 1
+texture = ExtResource("2_tu477")
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Label" type="Label" parent="Lower" unique_id=925901857]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+label_settings = SubResource("LabelSettings_srgox")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upper" type="Node2D" parent="." unique_id=2084999857]
+position = Vector2(105, 0)
+
+[node name="Image" type="Sprite2D" parent="Upper" unique_id=1384578998]
+texture_filter = 1
+texture = ExtResource("2_tu477")
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Label" type="Label" parent="Upper" unique_id=2063526372]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+label_settings = SubResource("LabelSettings_srgox")
+horizontal_alignment = 1
+vertical_alignment = 1

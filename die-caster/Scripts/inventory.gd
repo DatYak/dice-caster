@@ -54,6 +54,6 @@ func TEST_addRandomFaces():
 		var rnd = randi_range(1, TEST_random_face_max)
 		var data = FaceData.new()
 		data.numerical_value = rnd
-		data.sprite_frame = rnd
+		data.display_string = str(rnd)
 		extra_faces.append(data)
 		pass

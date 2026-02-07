@@ -1,14 +1,29 @@
 [gd_scene format=3 uid="uid://buy22nl4i1uvd"]
 
 [ext_resource type="Script" uid="uid://d2hasamqjdrqv" path="res://Scripts/die_face.gd" id="1_yov45"]
-[ext_resource type="Texture2D" uid="uid://b78ewq4jt7p2a" path="res://Sprites/D6/D6_Sheet.png" id="2_6f67f"]
+[ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="2_yov45"]
+[ext_resource type="FontFile" uid="uid://5bkv1wg08f0d" path="res://ka1.ttf" id="3_6f67f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yov45"]
+font = ExtResource("3_6f67f")
+font_size = 25
+font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Face" type="Node2D" unique_id=1591697436]
 script = ExtResource("1_yov45")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=1608516083]
 texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("2_6f67f")
-hframes = 7
+texture = ExtResource("2_yov45")
 region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Label" type="Label" parent="." unique_id=1684837362]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+label_settings = SubResource("LabelSettings_yov45")
+horizontal_alignment = 1
+vertical_alignment = 1

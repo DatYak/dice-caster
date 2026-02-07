@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b5j88s4gdntdv"]
+
+[ext_resource type="Script" uid="uid://yw2ojmxav8tf" path="res://Scripts/simple_range_req.gd" id="1_e16ex"]
+[ext_resource type="Texture2D" uid="uid://b78ewq4jt7p2a" path="res://Sprites/D6/D6_Sheet.png" id="2_uun5u"]
+
+[node name="RangeRequirement" type="Node2D" unique_id=361524091 node_paths=PackedStringArray("lower_bound_display", "upper_bound_display")]
+script = ExtResource("1_e16ex")
+lower_bound_display = NodePath("Lower")
+upper_bound_display = NodePath("Upper")
+
+[node name="Lower" type="Sprite2D" parent="." unique_id=43977551]
+texture_filter = 1
+position = Vector2(-90, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_uun5u")
+hframes = 7
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Upper" type="Sprite2D" parent="." unique_id=1932061989]
+texture_filter = 1
+position = Vector2(92, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_uun5u")
+hframes = 7
+region_rect = Rect2(0, 0, 0, 32)

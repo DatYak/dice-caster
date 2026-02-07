@@ -29,6 +29,5 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouse and event.is_pressed() and is_hovered:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if is_occupied:
-				print(occupying_face.face_data.numerical_value)
 				SignalBus.on_face_picked_up.emit(occupying_face)
 		

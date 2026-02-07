@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://bnbscim5mwyvw"]
 
-[ext_resource type="Texture2D" uid="uid://b78ewq4jt7p2a" path="res://Sprites/D6/D6_Sheet.png" id="1_p8l45"]
 [ext_resource type="Script" uid="uid://cha25h52ixdy4" path="res://Scripts/die_editor.gd" id="1_xu20e"]
 [ext_resource type="PackedScene" uid="uid://dk2v1g18fch2c" path="res://Scenes/FaceSlot.tscn" id="2_wyy6q"]
 [ext_resource type="PackedScene" uid="uid://buy22nl4i1uvd" path="res://Scenes/DieFace.tscn" id="3_scrru"]
+[ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="4_p5qbf"]
+[ext_resource type="FontFile" uid="uid://5bkv1wg08f0d" path="res://ka1.ttf" id="5_gdbo1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu6st"]
+font = ExtResource("5_gdbo1")
+font_size = 25
+font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [node name="DieEditor" type="Node2D" unique_id=444657851 node_paths=PackedStringArray("face_parent")]
 script = ExtResource("1_xu20e")
@@ -13,10 +20,20 @@ face_parent = NodePath("Faces")
 dice_slot_packed = ExtResource("2_wyy6q")
 die_face_packed = ExtResource("3_scrru")
 
-[node name="Image" type="Sprite2D" parent="." unique_id=2050916748]
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("1_p8l45")
-hframes = 7
-
 [node name="Faces" type="Node2D" parent="." unique_id=526193978]
+
+[node name="Image" type="Sprite2D" parent="." unique_id=577493557]
+texture_filter = 1
+texture = ExtResource("4_p5qbf")
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Label" type="Label" parent="." unique_id=1312346788]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "?"
+label_settings = SubResource("LabelSettings_wu6st")
+horizontal_alignment = 1
+vertical_alignment = 1

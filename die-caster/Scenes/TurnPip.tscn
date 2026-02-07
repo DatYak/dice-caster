@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://chepbn3s1i8gf"]
+
+[ext_resource type="Texture2D" uid="uid://dfp0706ksqsni" path="res://Sprites/TurnPip_Empty.png" id="1_3wlrv"]
+
+[node name="Turn Pip" type="Sprite2D" unique_id=2079887049]
+texture_filter = 1
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_3wlrv")

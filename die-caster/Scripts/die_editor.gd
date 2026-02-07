@@ -25,11 +25,11 @@ var shake_tween:Tween
 var image_scale
 
 @export var max_rolls = 5
-var rolls_made = 0
-var current_result = 0
+var current_roll:RollData
 var valid_slots: Array
 var hits_left: Dictionary
 
+var is_player_turn = true
 var shaking = false
 
 var face_slots : Array
@@ -38,11 +38,14 @@ var image : Sprite2D
 func _ready() -> void:
 	image = get_node("Image")
 	image_scale = image.scale
+	SignalBus.on_turn_resolved.connect(on_turn_resolved)
+	current_roll = RollData.new()
 	setupSlots()
 
 func  _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_SPACE:
+		if event.keycode == KEY_SPACE and is_player_turn:
+			is_player_turn = false
 			rollDie()
 
 func setupSlots():
@@ -64,8 +67,7 @@ func addDefaultFace(slot, i):
 		slot.setFaceInSlot(face)
 
 func rollDie():
-	rolls_made = 0
-	current_result = 0
+	current_roll.reset(base_damage)
 	
 	valid_slots.clear()
 	valid_slots = face_slots.duplicate()
@@ -105,14 +107,13 @@ func stopShakingDie():
 	shaking = false
 
 func on_roll_finish():
-	rolls_made += 1
 	var roll_again = rollSingleDie()
-	print ("Rolling (Total: " + str(current_result) + ") ")
-	if roll_again && rolls_made < max_rolls:
+	print ("Rolling (Total: " + str(current_roll.presented_value) + ") ")
+	if roll_again && current_roll.faces_rolled.size() <= max_rolls:
 		roll_duration_timer.start()
 	else:
 		stopShakingDie()
-		SignalBus.on_roll_presented.emit(current_result, base_damage)
+		SignalBus.on_roll_presented.emit(current_roll)
 
 func rollSingleDie() -> bool:
 	# What if every slot is locked?
@@ -122,8 +123,8 @@ func rollSingleDie() -> bool:
 	var slot = valid_slots.pick_random() as FaceSlot
 	var result = slot.getFaceData()
 	processQuirk(result)
-	current_result += result.numerical_value
-	$Label.text = str(current_result)
+	current_roll.addFaceToRoll(result)
+	$Label.text = str(current_roll.presented_value)
 	
 	slot.startFacePulse(face_tick_speed,face_tick_mult)
 	
@@ -133,6 +134,11 @@ func rollSingleDie() -> bool:
 		valid_slots.erase(slot)
 	
 	return result.will_roll_again
+
+func on_turn_resolved(is_challenge_over:bool):
+	is_player_turn = true
+	if is_challenge_over:
+		$Label.text = "?"
 
 func processQuirk(data: FaceData ):
 	match data.Quirk:

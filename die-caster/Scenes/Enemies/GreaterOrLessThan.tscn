@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://xj35pwjtw6ql"]
+
+[ext_resource type="Script" uid="uid://dkp87k0oxalo1" path="res://Scripts/greater-less-than-req.gd" id="1_3v2sg"]
+[ext_resource type="Texture2D" uid="uid://csoqclp087e67" path="res://Sprites/D6/D6_Blank.png" id="2_lneth"]
+[ext_resource type="FontFile" uid="uid://drh354gc30aj8" path="res://Born2bSportyFS.otf" id="3_1ntei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srgox"]
+font = ExtResource("3_1ntei")
+font_size = 45
+font_color = Color(0.2784314, 0.25490198, 0.41960785, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GreaterOrLessThan" type="Node2D" unique_id=361524091 node_paths=PackedStringArray("display")]
+script = ExtResource("1_3v2sg")
+display = NodePath("Display/Label")
+damage_min = 10
+damage_max = 10
+
+[node name="Display" type="Node2D" parent="." unique_id=475989844]
+
+[node name="Image" type="Sprite2D" parent="Display" unique_id=1410353789]
+texture_filter = 1
+texture = ExtResource("2_lneth")
+region_rect = Rect2(0, 0, 0, 32)
+
+[node name="Label" type="Label" parent="Display" unique_id=925901857]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+label_settings = SubResource("LabelSettings_srgox")
+horizontal_alignment = 1
+vertical_alignment = 1
